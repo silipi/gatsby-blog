@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `<Hello World />`,
+    title: `<HelloWorld />`,
     author: {
       name: `Gabriel Silipi`,
       summary: `Um desenvolvedor front-end, apaixonado por tecnologia.`,

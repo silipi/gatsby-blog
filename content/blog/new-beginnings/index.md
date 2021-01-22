@@ -1,7 +1,7 @@
 ---
-title: New Beginnings
-date: "2015-05-28T22:40:32.169Z"
-description: This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.
+title: Performance utilizando Parcel e React
+date: "2021-01-22T22:40:32.169Z"
+description: Como eu alterei o tamanho de um projeto utilizando React de ~240mb para ~96mb com uma alteração de Webpack.
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and
