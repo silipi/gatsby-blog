@@ -1,4 +1,7 @@
-/* CSS Custom Properties Definitions */
+/* 
+  CSS Custom Properties Definition;
+  Grande parte destas estilizações são default para utilizar nas postagens.
+*/
 
 :root {
   --maxWidth-none: "none";
@@ -32,8 +35,8 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
     Times, serif;
-  --font-body: var(--fontFamily-serif);
-  --font-heading: var(--fontFamily-sans);
+  --font-body: "Nunito", Arial, sans-serif;
+  --font-heading:  "Nunito", Arial, sans-serif;
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
   --fontWeight-semibold: 600;
@@ -54,12 +57,100 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --color-primary: #4487d3;
   --color-text: #2e353f;
   --color-text-light: #4f5969;
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+}
+
+button.contact {
+  padding: 6px 14px;
+  background-color: #f7f7f7;
+  border: 1px solid var(--color-heading);
+  font-family: var(--font-body);
+  border-radius: 6px;
+  transition: all ease-in-out 300ms;
+}
+
+button.contact:hover {
+  cursor: pointer;
+  transform: scale(1.05, 1.05);
+  background-color: #ffffff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.171);
+}
+
+/* ModalContact */
+.mdl-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Glassmorphism Effect */
+  background: rgba( 255, 255, 255, 0.50 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 2.5px );
+  -webkit-backdrop-filter: blur( 2.5px );
+}
+
+.mdl-container .mdl-box {
+  border: 1px solid red;
+  width: 500px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background: rgba(255, 255, 255, 0.726);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 1.5px );
+  -webkit-backdrop-filter: blur( 1.5px );
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.432);
+}
+
+.mdl-container .mdl-box span {
+  font-size: 16px;
+  word-wrap: break-word;
+  padding: 12px;
+  text-align: center;
+}
+
+.mdl-container .mdl-box-icons {
+  display: flex;
+}
+
+.mdl-container .mdl-icons {
+  height: 2.2rem;
+  width: 3rem;
+  margin-right: 0.8rem;
+  transition: all ease-out 200ms;
+}
+
+.mdl-container .mdl-icons svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mdl-container .mdl-icons:hover {
+  color: #8474ee;
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
+
+.mdl-container .mdl-box .btn-close {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* HTML elements */
@@ -68,6 +159,8 @@
 :after,
 :before {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -84,7 +177,7 @@ body {
 }
 
 footer {
-  padding: var(--spacing-6) var(--spacing-0);
+  padding: var(--spacing-6) 0;
 }
 
 hr {
@@ -163,15 +256,15 @@ p {
   line-height: var(--lineHeight-relaxed);
   --baseline-multiplier: 0.179;
   --x-height-multiplier: 0.35;
-  margin: var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0);
-  padding: var(--spacing-0);
+  margin: 0 0 var(--spacing-8) 0;
+  padding: 0;
 }
 
 ul,
 ol {
-  margin-left: var(--spacing-0);
-  margin-right: var(--spacing-0);
-  padding: var(--spacing-0);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
   margin-bottom: var(--spacing-8);
   list-style-position: outside;
   list-style-image: none;
@@ -179,7 +272,7 @@ ol {
 
 ul li,
 ol li {
-  padding-left: var(--spacing-0);
+  padding-left: 0;
   margin-bottom: calc(var(--spacing-8) / 2);
 }
 
@@ -188,7 +281,7 @@ li > p {
 }
 
 li *:last-child {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: 0;
 }
 
 li > ul {
@@ -200,7 +293,7 @@ blockquote {
   color: var(--color-text-light);
   margin-left: calc(-1 * var(--spacing-6));
   margin-right: var(--spacing-8);
-  padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-6);
+  padding: 0 0 0 var(--spacing-6);
   border-left: var(--spacing-1) solid var(--color-primary);
   font-size: var(--fontSize-2);
   font-style: italic;
@@ -208,7 +301,7 @@ blockquote {
 }
 
 blockquote > :last-child {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: 0;
 }
 
 blockquote > ul,
@@ -238,52 +331,23 @@ a:focus {
   text-decoration: none;
 }
 
-/* Custom classes */
-
-.global-wrapper {
-  margin: var(--spacing-0) auto;
-  max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-10) var(--spacing-5);
-}
-
-.global-wrapper[data-is-root-path="true"] .bio {
-  margin-bottom: var(--spacing-20);
-}
-
-.global-header {
-  margin-bottom: var(--spacing-12);
-}
-
-.main-heading {
-  font-size: var(--fontSize-7);
-  margin: 0;
-}
-
 .post-list-item {
-  margin-bottom: var(--spacing-8);
-  margin-top: var(--spacing-8);
+  margin: 2rem 0;
 }
 
 .post-list-item p {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: 0;
 }
 
 .post-list-item h2 {
   font-size: var(--fontSize-4);
   color: var(--color-primary);
   margin-bottom: var(--spacing-2);
-  margin-top: var(--spacing-0);
+  margin-top: 0;
 }
 
 .post-list-item header {
   margin-bottom: var(--spacing-4);
-}
-
-.header-link-home {
-  font-weight: var(--fontWeight-bold);
-  font-family: var(--font-heading);
-  text-decoration: none;
-  font-size: var(--fontSize-2);
 }
 
 .bio {
@@ -292,18 +356,18 @@ a:focus {
 }
 
 .bio p {
-  margin-bottom: var(--spacing-0);
+  margin-bottom: 0;
 }
 
 .bio-avatar {
   margin-right: var(--spacing-4);
-  margin-bottom: var(--spacing-0);
+  margin-bottom: 0;
   min-width: 50px;
   border-radius: 100%;
 }
 
 .blog-post header h1 {
-  margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
+  margin: 0 0 var(--spacing-4) 0;
 }
 
 .blog-post header p {
@@ -312,19 +376,47 @@ a:focus {
 }
 
 .blog-post-nav ul {
-  margin: var(--spacing-0);
+  margin: 0;
 }
 
-.gatsby-highlight {
-  margin-bottom: var(--spacing-8);
+.container {
+  margin: 0 auto;
+  max-width: var(--maxWidth-wrapper);
+  padding: var(--spacing-10) var(--spacing-5);
+}
+
+.header-posts {
+  margin-bottom: 1.2rem;
+}
+
+.header-posts a {
+  text-decoration: none;
 }
 
 /* Media queries */
 
+/* Smartphones */
+@media (max-width: 576px) {
+  .mdl-container .mdl-box {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .mdl-container .mdl-box .btn-close {
+    position: relative;
+    visibility: visible;
+    display: inline;
+    opacity: 1;
+    top: -40px;
+    right: calc(100vw - 133vw);
+    cursor: pointer;
+  }
+}
+
 @media (max-width: 42rem) {
   blockquote {
-    padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);
-    margin-left: var(--spacing-0);
+    padding: 0 0 0 var(--spacing-4);
+    margin-left: 0;
   }
   ul,
   ol {

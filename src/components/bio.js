@@ -38,14 +38,17 @@ const Bio = () => {
   return (
     <div className="bio">
       {avatar && (
-        <Image
-          fixed={avatar}
-          alt={author?.name || ``}
-          className="bio-avatar"
-          imgStyle={{
-            borderRadius: `50%`,
-          }}
-        />
+        <a href="mailto:gabriel.silipi@gmail.com" target="_blank" rel="noreferrer">
+          <Image
+            fixed={avatar}
+            alt={author?.name || ``}
+            className="bio-avatar"
+            imgStyle={{
+              borderRadius: `50%`,
+              cursor: "pointer"
+            }}
+          />
+        </a>
       )}
       {author?.name && (
         <div>
