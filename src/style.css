@@ -65,6 +65,10 @@
   --color-accent: #d1dce5;
 }
 
+.noscroll {
+  overflow: hidden;
+}
+
 button.contact {
   padding: 6px 14px;
   background-color: #f7f7f7;

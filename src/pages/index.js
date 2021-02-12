@@ -9,6 +9,16 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes;
   const [showModal, setShowModal] = useState(false);
 
+  const body = document.body;
+
+  if (showModal) {
+    body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    body.classList.add("noscroll");
+  } else {
+    body.classList.remove("noscroll");
+  } 
+
   return (
     <Container location={location}>
       {showModal ? <ModalContact setShowModal={(state) => setShowModal(state)}/> : ""}
