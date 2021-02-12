@@ -1,4 +1,7 @@
-/* CSS Custom Properties Definition */
+/* 
+  CSS Custom Properties Definition;
+  Grande parte destas estilizações são default para utilizar nas postagens.
+*/
 
 :root {
   --maxWidth-none: "none";
@@ -60,6 +63,94 @@
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+}
+
+button.contact {
+  padding: 6px 14px;
+  background-color: #f7f7f7;
+  border: 1px solid var(--color-heading);
+  font-family: var(--font-body);
+  border-radius: 6px;
+  transition: all ease-in-out 300ms;
+}
+
+button.contact:hover {
+  cursor: pointer;
+  transform: scale(1.05, 1.05);
+  background-color: #ffffff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.171);
+}
+
+/* ModalContact */
+.mdl-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Glassmorphism Effect */
+  background: rgba( 255, 255, 255, 0.50 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 2.5px );
+  -webkit-backdrop-filter: blur( 2.5px );
+}
+
+.mdl-container .mdl-box {
+  border: 1px solid red;
+  width: 500px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background: rgba(255, 255, 255, 0.726);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 1.5px );
+  -webkit-backdrop-filter: blur( 1.5px );
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.432);
+}
+
+.mdl-container .mdl-box span {
+  font-size: 16px;
+  word-wrap: break-word;
+  padding: 12px;
+  text-align: center;
+}
+
+.mdl-container .mdl-box-icons {
+  display: flex;
+}
+
+.mdl-container .mdl-icons {
+  height: 2.2rem;
+  width: 3rem;
+  margin-right: 0.8rem;
+  transition: all ease-out 200ms;
+}
+
+.mdl-container .mdl-icons svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mdl-container .mdl-icons:hover {
+  color: #8474ee;
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
+
+.mdl-container .mdl-box .btn-close {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 /* HTML elements */
@@ -303,6 +394,24 @@ a:focus {
 }
 
 /* Media queries */
+
+/* Smartphones */
+@media (max-width: 576px) {
+  .mdl-container .mdl-box {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .mdl-container .mdl-box .btn-close {
+    position: relative;
+    visibility: visible;
+    display: inline;
+    opacity: 1;
+    top: -40px;
+    right: calc(100vw - 133vw);
+    cursor: pointer;
+  }
+}
 
 @media (max-width: 42rem) {
   blockquote {

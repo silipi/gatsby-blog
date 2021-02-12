@@ -38,7 +38,7 @@ const Bio = () => {
   return (
     <div className="bio">
       {avatar && (
-        <a href="mailto:gabriel.silipi@gmail.com" target="_blank">
+        <a href="mailto:gabriel.silipi@gmail.com" target="_blank" rel="noreferrer">
           <Image
             fixed={avatar}
             alt={author?.name || ``}
