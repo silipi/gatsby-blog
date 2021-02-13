@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 
 import ModalContact from "../components/modalContact";
@@ -9,15 +9,15 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes;
   const [showModal, setShowModal] = useState(false);
 
-  const body = document.body;
-
-  if (showModal) {
-    body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    body.classList.add("noscroll");
-  } else {
-    body.classList.remove("noscroll");
-  } 
+  useEffect(() => {
+    if (showModal) {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      document.body.classList.add("noscroll");
+    } else {
+      document.body.classList.remove("noscroll");
+    } 
+  }, [showModal])
 
   return (
     <Container location={location}>
