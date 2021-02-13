@@ -8,12 +8,16 @@ Eu sempre criei meus projetos de React utilizando o [CRA (create-react-app)](ht
 
 Por exemplo, na minha máquina, um projeto utilizando o CRA consome um **espaço de armazenamento de quase 240mb**. Isso se dá pela quantidade de dependências do projeto e do WebPack (claro, tudo isso com a **pasta node_modules**).
 
+![Black Hole vs. node_modules](tgizbf9wxbp25xi1bnkz.png "Comparação entre buraco negro e a pasta node_modules.")
+
 Pensando em poupar meu notebook de sofrer (escutar o barulho do HD e o cooler do CPU acelerando) toda vez que abrisse o VSCode, procurei novas formas de iniciar um projeto React, e foi aí que eu encontrei o [Parcel](https://parceljs.org/getting_started.html).
 
 Parcel é um bundler de aplicações web, bem leve, que se diferencia pelo desempenho, trazendo uma experiência de desenvolver bem interessante e que requer zero configurações.\
 **Além disso, se um dia for necessário alterar para o Webpack, é possível.**
 
 Antes de começar, a diferença entre o tamanho das pastas é esta:
+
+![Comparação](4k56wekisaq1ueacmedl.png "Tamanho das pastas com CRA vs. Parcel")
 
 Pode não parecer muito, mas quando o computador não é dos melhores ou não tem um SSD, isso influencia bastante.
 
