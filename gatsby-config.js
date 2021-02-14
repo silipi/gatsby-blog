@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `<HelloWorld />`,
+    title: `Silipi - Um blog sobre desenvolvimento web`,
     author: {
       name: `Gabriel Silipi`,
       summary: `Um desenvolvedor front-end, apaixonado por tecnologia.`,
     },
     description: `Um blog para deixar registrado algumas coisas que acho interessante.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    siteUrl: `https://silipiblog.netlify.app/`,
     social: {
       twitter: `silipg`,
     },

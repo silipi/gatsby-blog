@@ -4,6 +4,7 @@ import { graphql } from "gatsby";
 import ModalContact from "../components/modalContact";
 import PostsList from "../components/posts-list";
 import Container from "../components/container";
+import SEO from "../components/seo";
 
 const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes;
@@ -21,6 +22,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Container location={location}>
+      <SEO title="Silipi | Um blog sobre desenvolvimento web"/>
       {showModal ? <ModalContact setShowModal={(state) => setShowModal(state)}/> : ""}
       <button onClick={() => setShowModal(!showModal)} className="contact">Entre em contato :)</button>
       <h2>Postagens:</h2>
