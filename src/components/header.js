@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "gatsby";
 
 export default function Header({ isRootPath }) {
-  const siteTitle = "<HelloWorld />";
+  const siteTitle = "<SilipiDEV/>";
 
   if (isRootPath) {
     return (

@@ -22,7 +22,7 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Container location={location}>
-      <SEO title="Silipi | Um blog sobre desenvolvimento web"/>
+      <SEO title="Página Inicial"/>
       {showModal ? <ModalContact setShowModal={(state) => setShowModal(state)}/> : ""}
       <button onClick={() => setShowModal(!showModal)} className="contact">Entre em contato :)</button>
       <h2>Postagens:</h2>

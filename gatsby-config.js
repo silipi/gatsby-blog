@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Silipi - Um blog sobre desenvolvimento web`,
+    title: `SilipiDEV`,
     author: {
       name: `Gabriel Silipi`,
       summary: `Um desenvolvedor front-end, apaixonado por tecnologia.`,
