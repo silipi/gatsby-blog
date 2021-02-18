@@ -5,6 +5,10 @@ description: Como criar um aplicativo no Expo (React Native) com autenticação
   por e-mail e senha e suporte à telas para usuários logados e deslogados com
   React Navigation.
 ---
+![React Native com Firebase Authentication](untitled.png)
+
+\
+\
 A decisão de fazer este artigo/tutorial foi para ajudar as pessoas que, assim como eu, estão começando e que qualquer conteúdo ou resposta do Stack Overflow pode ajudar.\
 \
 Sei também que, nestes casos, você já pode estar começando a fazer este projeto e só precisa entender porque seu código não funciona ou como implementar de uma maneira diferente, então para isto, deixo aqui já o repositório deste tutorial:
@@ -506,8 +510,6 @@ Isto funciona muito bem como base para criação de novos projetos, e é por iss
 Link para o repositório: <https://github.com/silipi/auth-firebase-rn>
 
 No meu Github existe [outro projeto](https://github.com/silipi/react-native-auth-firebase) que vai mais a fundo nesse tema.
-
-
 
 #### E é isso...
 
