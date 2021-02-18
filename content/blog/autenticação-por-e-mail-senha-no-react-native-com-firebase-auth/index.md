@@ -1,6 +1,6 @@
 ---
 title: Autenticação por e-mail/senha no React Native com Firebase Auth
-date: 2021-02-17T20:35:12.800Z
+date: 2021-02-18T23:14:43.884Z
 description: Como criar um aplicativo no Expo (React Native) com autenticação
   por e-mail e senha e suporte à telas para usuários logados e deslogados com
   React Navigation.
@@ -15,7 +15,7 @@ Então, vamos lá:
 
 ### Assuntos que serão abordados:
 
-* [Criação e configuração de conta no Firebase](#1.-Criação-e-configuração-de-conta-no-Firebase);
+* Criação e configuração de conta no Firebase;
 * Começando um novo projeto Expo;
 * Configurando acesso as telas de Login e Home;
 
