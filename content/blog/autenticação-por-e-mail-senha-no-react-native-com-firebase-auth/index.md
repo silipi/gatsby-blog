@@ -76,6 +76,12 @@ Caso haja alguma dúvida do processo ou como funciona o Expo, sempre [consulte a
 Segundo, instale o [React Navigation utilizando o Expo](https://reactnavigation.org/docs/getting-started#installing-dependencies-into-an-expo-managed-project) para obter as versões suportadas para o framework:
 
 ```shell
+npm install @react-navigation/native @react-navigation/stack
+```
+
+E as dependências do React Navigation para o Expo também:
+
+```shell
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 ```
 
@@ -190,8 +196,6 @@ O nosso projeto deve estar assim até então, na sua estrutura de pastas e arqui
 
 Agora, podemos configurar as telas. Vamos lá!
 
-
-
 ### 3. Configurando acesso as telas de Login e Home:
 
 No arquivo Routes.js, iremos escrever o seguinte código:
@@ -240,21 +244,23 @@ Isto é a lógica para decidir se um usuário irá para a HomeStack ou ficará n
 
 O usuário está sendo armazenado no state `user` do componente Routes para simplificar o exemplo, porém, seria mais adequado e recomendado colocar este usuário (que contém todas as propriedades, como nome, foto de perfil e e-mail) na Context API do React (ou Redux, se preferir). No repositório que deixei, estou utilizando a Context para compartilhar este usuário em toda a aplicação.
 
-#### Como eu poderia manter os registros dos usuários cadastrados? 
+#### Como eu poderia manter os registros dos usuários cadastrados?
 
 Ao cadastrar um novo usuário, você teria que ter uma função que faz o cadastro no Firebase Auth e replicar o mesmo cadastro para um banco de dados externo, por exemplo, o Firestore (também do Firebase) criando um documento (Firestore é NoSQL) com o mesmo UID. 
 
 Por exemplo, um usuário novo cadastrado na sua aplicação passaria: 
-- **1.** primeiro por uma função assíncrona do Firebase Auth chamada `createUserWithEmailAndPassword()` que retornaria um objeto `user`; 
-- **2.** com este objeto, você poderia obter o UID deste usuário cadastrado e criar um documento no Firestore com este UID, em uma collection chamada `users`; 
-- **3.** quando este usuário for, por exemplo, criar uma postagem, esta postagem iria ser cadastrada no Firestore puxando o UID deste usuário logado; algo assim:
+
+* **1.** primeiro por uma função assíncrona do Firebase Auth chamada `createUserWithEmailAndPassword()` que retornaria um objeto `user`; 
+* **2.** com este objeto, você poderia obter o UID deste usuário cadastrado e criar um documento no Firestore com este UID, em uma collection chamada `users`; 
+* **3.** quando este usuário for, por exemplo, criar uma postagem, esta postagem iria ser cadastrada no Firestore puxando o UID deste usuário logado; algo assim:
+
 ```json
 {
   "postText": "Minha primeira postagem!",
   "userId": "TJzRWNFSBGMSW7g8PJcfEOKvJ6n1"
 }
 ```
-- **4.** e, por fim, no 'Feed de notícias' iria ser consultado os documentos na collection `posts` e feito uma consulta assíncrona para trazer o nome do usuário e a foto de perfil na collection `users` buscando por aquele UID.
+
+* **4.** e, por fim, no 'Feed de notícias' iria ser consultado os documentos na collection `posts` e feito uma consulta assíncrona para trazer o nome do usuário e a foto de perfil na collection `users` buscando por aquele UID.
 
 Agora que já está ficando mais claro o que estamos fazendo aqui, vamos dar uma **incrementada nas nossas telas de Login e Cadastro**. Irei colocar aqui uma ideia de como poderia ser feito a tela, mas o conceito pode ser alterado juntamente com a estilização.
-
