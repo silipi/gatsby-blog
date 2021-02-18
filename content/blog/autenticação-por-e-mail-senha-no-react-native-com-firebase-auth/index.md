@@ -9,6 +9,8 @@ A decisão de fazer este artigo/tutorial foi para ajudar as pessoas que, assim c
 \
 Sei também que, nestes casos, você já pode estar começando a fazer este projeto e só precisa entender porque seu código não funciona ou como implementar de uma maneira diferente, então para isto, deixo aqui já o repositório deste tutorial:
 
+**Repositório:** <https://github.com/silipi/react-native-auth-firebase>
+
 Então, vamos lá:
 
 ### Assuntos que serão abordados:
@@ -224,7 +226,8 @@ export default function Routes() {
     return subscriber; 
   }, []);
 
-  // Isso irá bloquear a execução até que a mudança no estado de autenticação seja concluida.
+  // Isso irá bloquear a execução até que a mudança no estado de autenticação 
+  // seja concluida.
   if (initializing) {
     return null
   }
@@ -264,3 +267,250 @@ Por exemplo, um usuário novo cadastrado na sua aplicação passaria:
 * **4.** e, por fim, no 'Feed de notícias' iria ser consultado os documentos na collection `posts` e feito uma consulta assíncrona para trazer o nome do usuário e a foto de perfil na collection `users` buscando por aquele UID.
 
 Agora que já está ficando mais claro o que estamos fazendo aqui, vamos dar uma **incrementada nas nossas telas de Login e Cadastro**. Irei colocar aqui uma ideia de como poderia ser feito a tela, mas o conceito pode ser alterado juntamente com a estilização.
+
+**LoginScreen.js:**
+
+```jsx
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import firebase from '../database/firebase';
+
+export default function LoginScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (email === "" || password === "") {
+      ToastAndroid.showWithGravity(
+        "Verifique as informações e tente novamente.", 
+        ToastAndroid.SHORT, 
+        ToastAndroid.TOP
+      );
+      return;
+    }
+
+    firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  return (
+    <View style={styles.container}>
+      <TextInput 
+        onChangeText={value => setEmail(value)}
+        placeholder="E-mail"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        style={styles.input}
+      />
+      <TextInput 
+        onChangeText={value => setPassword(value)}
+        placeholder="Senha"
+        secureTextEntry
+        style={styles.input}
+      />
+      <TouchableOpacity
+        onPress={handleLogin}
+        style={styles.loginButton}
+      >
+        <Text style={styles.text}>Login</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Signup")}
+        style={styles.signupButton}
+      >
+        <Text style={styles.text}>Ainda não tem uma conta? Cadastre-se!</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 16,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    fontSize: 16,
+    width: "90%",
+    borderBottomWidth: 1,
+    paddingVertical: 5,
+    marginBottom: 35,
+  },
+  loginButton: {
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "80%",
+    height: 50,
+    backgroundColor: "#10ac84",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  signupButton: {
+    padding: 5
+  }
+})
+```
+
+**SignupScreen.js:**
+
+```jsx
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ToastAndroid } from 'react-native';
+import firebase from '../database/firebase';
+
+export default function SignupScreen({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = () => {
+    if (email === "" || password === "") {
+      ToastAndroid.showWithGravity(
+        "Verifique as informações e tente novamente.", 
+        ToastAndroid.SHORT, 
+        ToastAndroid.TOP
+      );
+      return;
+    }
+
+    try {
+      firebase.auth().createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  return (
+    <View style={styles.container}>
+      <TextInput 
+        onChangeText={value => setEmail(value)}
+        placeholder="E-mail"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        style={styles.input}
+      />
+      <TextInput 
+        onChangeText={value => setPassword(value)}
+        placeholder="Senha (minimo 6 caracteres)"
+        secureTextEntry
+        style={styles.input}
+      />
+      <TouchableOpacity
+        onPress={handleSignup}
+        style={styles.signupButton}
+      >
+        <Text style={styles.text}>Cadastrar-se</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Login")}
+        style={styles.loginButton}
+      >
+        <Text style={styles.text}>Já tem uma conta? Faça o login.</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 16,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    fontSize: 16,
+    width: "90%",
+    borderBottomWidth: 1,
+    paddingVertical: 5,
+    marginBottom: 35,
+  },
+  signupButton: {
+    fontSize: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "80%",
+    height: 50,
+    backgroundColor: "#54a0ff",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  loginButton: {
+    padding: 5
+  }
+})
+```
+
+**HomeScreen.js:**
+
+```jsx
+import React from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import firebase from '../database/firebase';
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>Tela principal (Home)</Text>
+      <Button 
+        title="Desconectar-se" 
+        onPress={() => firebase.auth().signOut()}
+      />
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+})
+```
+
+Perfeito! Agora temos nossas telas preparadas, o arquivo Routes puxando as telas e fazendo a lógica para o usuário autenticado, só nos falta importar este arquivo Routes dentro do App.js:
+
+```jsx
+import React from 'react';
+import Routes from './navigation/Routes';
+
+export default function App() {
+  return (
+    <Routes />
+  );
+}
+```
+
+Nos arquivos das telas, foi colocado uma simples validação no e-mail e senha, porém, isso pode ser incrementado assim como a estilização da tela. Mas, para manter simples, foi feito assim.
+
+Com isso, teremos o seguinte fluxo:
+
+![Aplicativo em funcionamento no emulador.](screen.gif)
+
+Olha que show de bola! Temos um aplicativo funcional, com suporte a autenticação, pronto para receber mais funcionalidades! 
+
+Isto funciona muito bem como base para criação de novos projetos, e é por isso que eu estarei disponibilizando o código fonte até aqui lá no meu Github:
+
+Link para o repositório: <https://github.com/silipi/auth-firebase-rn>
+
+No meu Github existe [outro projeto](https://github.com/silipi/react-native-auth-firebase) que vai mais a fundo nesse tema.
+
+
+
+#### E é isso...
+
+Bem, acho que deu para entender um pouco como funciona o fluxo de telas e a autenticação por parte do Firebase. Tem muito mais para ser explorado, como por exemplo, fazer upload de fotos de perfil para a Storage do Firebase e alterar isto no usuário, fazer criação de postagens, Analytics... a lista é grande. Firebase é uma excelente plataforma para isto, nem sempre vai ser a melhor em atender outros cenários, mas para criação de aplicativos assim, sem precisar se preocupar tanto com a infraestrutura, é excelente!
+
+De qualquer forma, muito obrigado por ter chegado até aqui! Até a próxima o/
