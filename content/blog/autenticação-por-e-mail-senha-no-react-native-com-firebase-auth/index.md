@@ -1,14 +1,12 @@
 ---
 title: Autenticação por e-mail/senha no React Native com Firebase Auth
-date: 2021-02-18T23:14:43.884Z
+date: 2021-02-19T00:05:28.308Z
 description: Como criar um aplicativo no Expo (React Native) com autenticação
   por e-mail e senha e suporte à telas para usuários logados e deslogados com
   React Navigation.
 ---
 ![React Native com Firebase Authentication](untitled.png)
 
-\
-\
 A decisão de fazer este artigo/tutorial foi para ajudar as pessoas que, assim como eu, estão começando e que qualquer conteúdo ou resposta do Stack Overflow pode ajudar.\
 \
 Sei também que, nestes casos, você já pode estar começando a fazer este projeto e só precisa entender porque seu código não funciona ou como implementar de uma maneira diferente, então para isto, deixo aqui já o repositório deste tutorial:
@@ -21,7 +19,9 @@ Então, vamos lá:
 
 * Criação e configuração de conta no Firebase;
 * Começando um novo projeto Expo;
-* Configurando acesso as telas de Login e Home;
+* Adicionando suporte as telas;
+* Utilizando React Navigation para definir as rotas;
+* Incrementação das telas e finalização;
 
 ### 1. Criação e configuração de conta no Firebase;
 
@@ -52,7 +52,7 @@ var firebaseConfig = {
 };
 ```
 
-Copie o seu `firebaseConfig` e pode clicar em 'Continuar no console'.\
+Copie o seu `firebaseConfig` e pode clicar em 'Continuar no console', usaremos este objeto posteriormente.\
 \
 Só falta mais uma coisa, habilitar a autenticação por e-mail e senha no Console do Firebase. Acesse o menu lateral > Authentication > E-mail/senha > 'Editar' > Ative a primeira opção.
 
@@ -202,7 +202,7 @@ O nosso projeto deve estar assim até então, na sua estrutura de pastas e arqui
 
 Agora, podemos configurar as telas. Vamos lá!
 
-### 3. Configurando acesso as telas de Login e Home:
+### 4. Utilizando React Navigation para definir as rotas:
 
 No arquivo Routes.js, iremos escrever o seguinte código:
 
@@ -249,7 +249,7 @@ export default function Routes() {
 
 Isto é a lógica para decidir se um usuário irá para a HomeStack ou ficará na AuthStack. A função `onAuthStateChanged()` será executada assim que este arquivo for chamado e ficará escutando o Firebase para verificar se a instância de usuário foi alterada (usuário criado, logado e deslogado).
 
-O usuário está sendo armazenado no state `user` do componente Routes para simplificar o exemplo, porém, seria mais adequado e recomendado colocar este usuário (que contém todas as propriedades, como nome, foto de perfil e e-mail) na Context API do React (ou Redux, se preferir). No repositório que deixei, estou utilizando a Context para compartilhar este usuário em toda a aplicação.
+O usuário está sendo armazenado no state `user` do componente Routes para simplificar o exemplo, porém, seria mais adequado e recomendado colocar este usuário (que contém todas as propriedades, como nome, foto de perfil e e-mail) na Context API do React (ou Redux, se preferir). 
 
 #### Como eu poderia manter os registros dos usuários cadastrados?
 
@@ -269,6 +269,8 @@ Por exemplo, um usuário novo cadastrado na sua aplicação passaria:
 ```
 
 * **4.** e, por fim, no 'Feed de notícias' iria ser consultado os documentos na collection `posts` e feito uma consulta assíncrona para trazer o nome do usuário e a foto de perfil na collection `users` buscando por aquele UID.
+
+### 5. Incrementação das telas e finalização:
 
 Agora que já está ficando mais claro o que estamos fazendo aqui, vamos dar uma **incrementada nas nossas telas de Login e Cadastro**. Irei colocar aqui uma ideia de como poderia ser feito a tela, mas o conceito pode ser alterado juntamente com a estilização.
 
@@ -515,4 +517,6 @@ No meu Github existe [outro projeto](https://github.com/silipi/react-native-auth
 
 Bem, acho que deu para entender um pouco como funciona o fluxo de telas e a autenticação por parte do Firebase. Tem muito mais para ser explorado, como por exemplo, fazer upload de fotos de perfil para a Storage do Firebase e alterar isto no usuário, fazer criação de postagens, Analytics... a lista é grande. Firebase é uma excelente plataforma para isto, nem sempre vai ser a melhor em atender outros cenários, mas para criação de aplicativos assim, sem precisar se preocupar tanto com a infraestrutura, é excelente!
 
-De qualquer forma, muito obrigado por ter chegado até aqui! Até a próxima o/
+De qualquer forma, este foi o meu primeiro post/tutorial escrito neste blog inteiro! Muito obrigado por ter chegado até aqui, lido tudo isso e, de alguma forma, me apoiado a continuar postando!
+
+Até a próxima o/
